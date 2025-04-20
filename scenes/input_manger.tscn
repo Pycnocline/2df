@@ -1,0 +1,199 @@
+[gd_scene load_steps=8 format=3 uid="uid://bkdry3f038mnw"]
+
+[ext_resource type="Script" uid="uid://cf8jv13pf60ql" path="res://scripts/input_manger.gd" id="1_eev2i"]
+[ext_resource type="Script" uid="uid://dm85hcj08pf3u" path="res://addons/godot_state_charts/state_chart.gd" id="2_c67lu"]
+[ext_resource type="Script" uid="uid://bgpun1al2cyiw" path="res://addons/godot_state_charts/parallel_state.gd" id="3_xsf8v"]
+[ext_resource type="Script" uid="uid://db1b6qe1ugkuy" path="res://addons/godot_state_charts/compound_state.gd" id="4_lqlga"]
+[ext_resource type="Script" uid="uid://crvwhkffmtiby" path="res://addons/godot_state_charts/atomic_state.gd" id="5_8qktm"]
+[ext_resource type="Script" uid="uid://d3k0ogudujd63" path="res://addons/godot_state_charts/transition.gd" id="6_rewar"]
+[ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="7_c67lu"]
+
+[node name="InputManger" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_eev2i")
+
+[node name="ComboManager" type="Node" parent="."]
+script = ExtResource("2_c67lu")
+metadata/_custom_type_script = "uid://dm85hcj08pf3u"
+
+[node name="Root" type="Node" parent="ComboManager"]
+script = ExtResource("3_xsf8v")
+
+[node name="623p" type="Node" parent="ComboManager/Root"]
+script = ExtResource("4_lqlga")
+initial_state = NodePath("null")
+
+[node name="null" type="Node" parent="ComboManager/Root/623p"]
+script = ExtResource("5_8qktm")
+
+[node name="to6" type="Node" parent="ComboManager/Root/623p/null"]
+script = ExtResource("6_rewar")
+to = NodePath("../../6")
+event = &"right"
+delay_in_seconds = "0.0"
+
+[node name="6" type="Node" parent="ComboManager/Root/623p"]
+script = ExtResource("5_8qktm")
+
+[node name="to62" type="Node" parent="ComboManager/Root/623p/6"]
+script = ExtResource("6_rewar")
+to = NodePath("../../62")
+event = &"down"
+delay_in_seconds = "0.0"
+
+[node name="tonull" type="Node" parent="ComboManager/Root/623p/6"]
+script = ExtResource("6_rewar")
+to = NodePath("../../null")
+event = &"null"
+delay_in_seconds = "0.3"
+
+[node name="62" type="Node" parent="ComboManager/Root/623p"]
+script = ExtResource("5_8qktm")
+
+[node name="to623" type="Node" parent="ComboManager/Root/623p/62"]
+script = ExtResource("6_rewar")
+to = NodePath("../../623")
+event = &"downright"
+delay_in_seconds = "0.0"
+
+[node name="tonull" type="Node" parent="ComboManager/Root/623p/62"]
+script = ExtResource("6_rewar")
+to = NodePath("../../null")
+delay_in_seconds = "0.3"
+
+[node name="623" type="Node" parent="ComboManager/Root/623p"]
+script = ExtResource("5_8qktm")
+
+[node name="to623p" type="Node" parent="ComboManager/Root/623p/623"]
+script = ExtResource("6_rewar")
+to = NodePath("../../623p")
+event = &"punch"
+delay_in_seconds = "0.0"
+
+[node name="tonull" type="Node" parent="ComboManager/Root/623p/623"]
+script = ExtResource("6_rewar")
+to = NodePath("../../null")
+delay_in_seconds = "0.3"
+
+[node name="623p" type="Node" parent="ComboManager/Root/623p"]
+script = ExtResource("5_8qktm")
+
+[node name="tonull" type="Node" parent="ComboManager/Root/623p/623p"]
+script = ExtResource("6_rewar")
+to = NodePath("../../null")
+delay_in_seconds = "0.3"
+
+[node name="236p" type="Node" parent="ComboManager/Root"]
+script = ExtResource("4_lqlga")
+initial_state = NodePath("null")
+
+[node name="null" type="Node" parent="ComboManager/Root/236p"]
+script = ExtResource("5_8qktm")
+
+[node name="to2" type="Node" parent="ComboManager/Root/236p/null"]
+script = ExtResource("6_rewar")
+to = NodePath("../../2")
+event = &"down"
+delay_in_seconds = "0"
+
+[node name="2" type="Node" parent="ComboManager/Root/236p"]
+script = ExtResource("5_8qktm")
+
+[node name="to23" type="Node" parent="ComboManager/Root/236p/2"]
+script = ExtResource("6_rewar")
+to = NodePath("../../23")
+event = &"downright"
+delay_in_seconds = "0.0"
+
+[node name="tonull" type="Node" parent="ComboManager/Root/236p/2"]
+script = ExtResource("6_rewar")
+to = NodePath("../../null")
+event = &"null"
+delay_in_seconds = "0.3"
+
+[node name="23" type="Node" parent="ComboManager/Root/236p"]
+script = ExtResource("5_8qktm")
+
+[node name="to236" type="Node" parent="ComboManager/Root/236p/23"]
+script = ExtResource("6_rewar")
+to = NodePath("../../236")
+event = &"right"
+delay_in_seconds = "0.0"
+
+[node name="tonull" type="Node" parent="ComboManager/Root/236p/23"]
+script = ExtResource("6_rewar")
+to = NodePath("../../null")
+delay_in_seconds = "0.3"
+
+[node name="236" type="Node" parent="ComboManager/Root/236p"]
+script = ExtResource("5_8qktm")
+
+[node name="to236p" type="Node" parent="ComboManager/Root/236p/236"]
+script = ExtResource("6_rewar")
+to = NodePath("../../236p")
+event = &"punch"
+delay_in_seconds = "0.0"
+
+[node name="tonull" type="Node" parent="ComboManager/Root/236p/236"]
+script = ExtResource("6_rewar")
+to = NodePath("../../null")
+delay_in_seconds = "0.3"
+
+[node name="236p" type="Node" parent="ComboManager/Root/236p"]
+script = ExtResource("5_8qktm")
+
+[node name="tonull" type="Node" parent="ComboManager/Root/236p/236p"]
+script = ExtResource("6_rewar")
+to = NodePath("../../null")
+delay_in_seconds = "0.3"
+
+[node name="Indicator" type="Node" parent="."]
+
+[node name="Label_Delta" type="Label" parent="Indicator"]
+offset_right = 194.0
+offset_bottom = 23.0
+text = "Delta:"
+
+[node name="Label_CurrentFrame" type="Label" parent="Indicator"]
+offset_top = 25.0
+offset_right = 194.0
+offset_bottom = 48.0
+text = "当前帧:"
+
+[node name="Label_CurrentDirectionInput" type="Label" parent="Indicator"]
+offset_top = 50.0
+offset_right = 194.0
+offset_bottom = 73.0
+text = "当前标准化方向输入:"
+
+[node name="RichTextLabel_Input_data_sheet" type="RichTextLabel" parent="Indicator"]
+anchors_preset = -1
+anchor_top = 0.315
+anchor_right = 0.296
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = -0.12001
+offset_right = 0.00799561
+grow_horizontal = 0
+grow_vertical = 2
+bbcode_enabled = true
+scroll_active = false
+scroll_following = true
+
+[node name="Label_8DirectionInput" type="Label" parent="Indicator"]
+offset_top = 73.0
+offset_right = 194.0
+offset_bottom = 96.0
+text = "8方向输入:"
+
+[node name="StateChartDebugger" parent="." instance=ExtResource("7_c67lu")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.671
+offset_left = -0.320068
+initial_node_to_watch = NodePath("../ComboManager")

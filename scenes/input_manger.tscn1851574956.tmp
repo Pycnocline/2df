@@ -1,0 +1,86 @@
+[gd_scene load_steps=7 format=3 uid="uid://bkdry3f038mnw"]
+
+[ext_resource type="Script" uid="uid://cf8jv13pf60ql" path="res://scripts/input_manger.gd" id="1_eev2i"]
+[ext_resource type="Script" uid="uid://dm85hcj08pf3u" path="res://addons/godot_state_charts/state_chart.gd" id="2_c67lu"]
+[ext_resource type="Script" uid="uid://bgpun1al2cyiw" path="res://addons/godot_state_charts/parallel_state.gd" id="3_xsf8v"]
+[ext_resource type="Script" uid="uid://db1b6qe1ugkuy" path="res://addons/godot_state_charts/compound_state.gd" id="4_lqlga"]
+[ext_resource type="Script" uid="uid://crvwhkffmtiby" path="res://addons/godot_state_charts/atomic_state.gd" id="5_8qktm"]
+[ext_resource type="Script" uid="uid://d3k0ogudujd63" path="res://addons/godot_state_charts/transition.gd" id="6_rewar"]
+
+[node name="InputManger" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_eev2i")
+
+[node name="ComboManager" type="Node" parent="."]
+script = ExtResource("2_c67lu")
+metadata/_custom_type_script = "uid://dm85hcj08pf3u"
+
+[node name="Root" type="Node" parent="ComboManager"]
+script = ExtResource("3_xsf8v")
+
+[node name="623p" type="Node" parent="ComboManager/Root"]
+script = ExtResource("4_lqlga")
+initial_state = NodePath("6")
+
+[node name="6" type="Node" parent="ComboManager/Root/623p"]
+script = ExtResource("5_8qktm")
+
+[node name="to62" type="Node" parent="ComboManager/Root/623p/6"]
+script = ExtResource("6_rewar")
+to = NodePath("../../62")
+event = &"input2"
+delay_in_seconds = "0.0"
+
+[node name="62" type="Node" parent="ComboManager/Root/623p"]
+script = ExtResource("5_8qktm")
+
+[node name="to623" type="Node" parent="ComboManager/Root/623p/62"]
+script = ExtResource("6_rewar")
+to = NodePath("../../623")
+event = &"input3"
+delay_in_seconds = "0.0"
+
+[node name="to6" type="Node" parent="ComboManager/Root/623p/62"]
+script = ExtResource("6_rewar")
+to = NodePath("../../6")
+delay_in_seconds = "0.0"
+
+[node name="623" type="Node" parent="ComboManager/Root/623p"]
+script = ExtResource("5_8qktm")
+
+[node name="to623p" type="Node" parent="ComboManager/Root/623p/623"]
+script = ExtResource("6_rewar")
+to = NodePath("../../623p")
+event = &"inputp"
+delay_in_seconds = "0.0"
+
+[node name="to6" type="Node" parent="ComboManager/Root/623p/623"]
+script = ExtResource("6_rewar")
+to = NodePath("../../6")
+delay_in_seconds = "0.0"
+
+[node name="623p" type="Node" parent="ComboManager/Root/623p"]
+script = ExtResource("5_8qktm")
+
+[node name="to6" type="Node" parent="ComboManager/Root/623p/623p"]
+script = ExtResource("6_rewar")
+to = NodePath("../../6")
+delay_in_seconds = "0.0"
+
+[node name="Indicator" type="Node" parent="."]
+
+[node name="Label_Delta" type="Label" parent="Indicator"]
+offset_right = 194.0
+offset_bottom = 23.0
+text = "Delta:"
+
+[node name="Label_CurrentFrame" type="Label" parent="Indicator"]
+offset_top = 25.0
+offset_right = 194.0
+offset_bottom = 48.0
+text = "当前帧:"
