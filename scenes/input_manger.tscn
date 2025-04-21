@@ -191,9 +191,44 @@ offset_right = 194.0
 offset_bottom = 96.0
 text = "8方向输入:"
 
+[node name="Label_IsLeft" type="Label" parent="Indicator"]
+offset_top = 98.0
+offset_right = 194.0
+offset_bottom = 121.0
+text = "在左侧:"
+
+[node name="controller" type="Node" parent="."]
+
+[node name="button_ChangeFacing" type="Button" parent="controller"]
+anchors_preset = -1
+anchor_left = 0.575
+anchor_top = 0.031
+anchor_right = 0.651
+anchor_bottom = 0.08
+offset_left = -0.00012207
+offset_top = 0.519997
+offset_right = -0.920044
+offset_bottom = -0.400009
+text = "改变朝向"
+
+[node name="button_FrameControl" type="Button" parent="controller"]
+anchors_preset = -1
+anchor_left = 0.575
+anchor_top = 0.096
+anchor_right = 0.651
+anchor_bottom = 0.144
+offset_left = -0.00012207
+offset_top = 0.32
+offset_right = -0.920044
+offset_bottom = 0.479996
+text = "开始/暂停"
+
 [node name="StateChartDebugger" parent="." instance=ExtResource("7_c67lu")]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.671
 offset_left = -0.320068
 initial_node_to_watch = NodePath("../ComboManager")
+
+[connection signal="pressed" from="controller/button_ChangeFacing" to="." method="_on_button_change_facing_pressed"]
+[connection signal="pressed" from="controller/button_FrameControl" to="." method="_on_button_frame_control_pressed"]

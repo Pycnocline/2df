@@ -29,6 +29,7 @@ enabled=PackedStringArray("res://addons/godot_state_charts/plugin.cfg")
 
 folder_colors={
 "res://addons/": "red",
+"res://assets/": "green",
 "res://scenes/": "orange",
 "res://scripts/": "yellow"
 }
