@@ -223,18 +223,6 @@ offset_right = -0.920044
 offset_bottom = 0.479996
 text = "开始/暂停"
 
-[node name="button_ShowDataSheet" type="Button" parent="controller"]
-anchors_preset = -1
-anchor_left = 0.575
-anchor_top = 0.165
-anchor_right = 0.651
-anchor_bottom = 0.213
-offset_left = -0.00012207
-offset_top = -0.200012
-offset_right = -0.920044
-offset_bottom = -0.0400238
-text = "显示指令历史"
-
 [node name="StateChartDebugger" parent="." instance=ExtResource("7_c67lu")]
 layout_mode = 1
 anchors_preset = -1
@@ -244,4 +232,3 @@ initial_node_to_watch = NodePath("../ComboManager")
 
 [connection signal="pressed" from="controller/button_ChangeFacing" to="." method="_on_button_change_facing_pressed"]
 [connection signal="pressed" from="controller/button_FrameControl" to="." method="_on_button_frame_control_pressed"]
-[connection signal="pressed" from="controller/button_ShowDataSheet" to="." method="_on_button_show_data_sheet_pressed"]

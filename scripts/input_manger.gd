@@ -2,19 +2,23 @@ extends Control
 
 const PI = 3.14
 
+var is_player_1 = true
 var current_frame = 0
 var is_frame_running = false
 var input_direction = "null"
 var input_data = {
+	"is_player_1" : true,
+	"is_left" : true,
 	"8_direction" : "null",
 	"punch" : false,
 	"kick" : false,
 	"strike" : false,
-	"hard_strike" : false
+	"hard_strike" : false,
 }
 var input_data_sheet = {}
 var is_left = true
 var last_active_frame = 0
+var show_input_data_sheet = false
 
 @onready var label_delta: Label = $Indicator/Label_Delta
 @onready var label_current_frame: Label = $Indicator/Label_CurrentFrame
@@ -26,9 +30,13 @@ var last_active_frame = 0
 
 
 func _ready() -> void:
+	input_data["is_player_1"] = is_player_1
+	input_data["is_left"] = is_left
 	input_data_sheet[0] = input_data.duplicate(true)
+	apply_action()
 
 func _physics_process(delta: float) -> void:
+	
 	if is_frame_running:
 		current_frame += 1
 		
@@ -39,6 +47,10 @@ func _physics_process(delta: float) -> void:
 	
 	get_input()
 	write_input_sheet()
+	if is_frame_running:
+		apply_action()
+	InputSheet.is_frame_running = is_frame_running
+	
 	label_is_left.text = "在左侧:" + str(is_left)
 
 func get_input():
@@ -94,11 +106,23 @@ func get_input():
 
 	
 func write_input_sheet():
-	if input_data != input_data_sheet[last_active_frame]:
+	input_data["is_left"] = is_left
+	
+	if input_data != input_data_sheet[last_active_frame] or InputSheet.is_frame_running != is_frame_running:
 		last_active_frame = current_frame
 		input_data_sheet[current_frame] = input_data.duplicate(true)
-		rich_text_label_input_data_sheet.text = str(input_data_sheet)
+		if show_input_data_sheet:
+			rich_text_label_input_data_sheet.text = str(input_data_sheet)
+	
 
+func apply_action():
+	if is_player_1:
+		InputSheet.player_1_input_sheet = input_data_sheet.duplicate(true)
+		InputSheet.player_1_current_frame = current_frame
+	else:
+		InputSheet.player_2_input_sheet = input_data_sheet.duplicate(true)
+		InputSheet.player_2_current_frame = current_frame
+	
 
 func _on_button_change_facing_pressed() -> void:
 	is_left = !is_left
@@ -106,3 +130,7 @@ func _on_button_change_facing_pressed() -> void:
 
 func _on_button_frame_control_pressed() -> void:
 	is_frame_running = !is_frame_running
+
+
+func _on_button_show_data_sheet_pressed() -> void:
+	show_input_data_sheet = !show_input_data_sheet

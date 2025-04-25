@@ -11,8 +11,14 @@ config_version=5
 [application]
 
 config/name="2df"
+config/version="0.0.5"
+run/main_scene="uid://egdhkdejc7ue"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+InputSheetHandler="*res://scripts/resource/input_sheet_handler.gd"
 
 [display]
 
