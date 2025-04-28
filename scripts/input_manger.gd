@@ -24,7 +24,6 @@ var show_input_data_sheet = false
 @onready var label_current_frame: Label = $Indicator/Label_CurrentFrame
 @onready var label_current_direction_input: Label = $Indicator/Label_CurrentDirectionInput
 @onready var rich_text_label_input_data_sheet: RichTextLabel = $Indicator/RichTextLabel_Input_data_sheet
-@onready var combo_manager: StateChart = $ComboManager
 @onready var label_8_direction_input: Label = $Indicator/Label_8DirectionInput
 @onready var label_is_left: Label = $Indicator/Label_IsLeft
 
@@ -85,22 +84,10 @@ func get_input():
 	
 	input_data["8_direction"] = input_direction
 	label_8_direction_input.text = "8方向输入:" + str(input_direction)
-	
-	if last_input_direction != input_direction:
-		if is_left:
-			combo_manager.send_event(input_direction)
-		else:
-			var combo_on_right = input_direction
-			if "right" in combo_on_right:
-				combo_on_right = combo_on_right.replace("right", "left")
-			elif "left" in combo_on_right:
-				combo_on_right = combo_on_right.replace("left", "right")
-			combo_manager.send_event(combo_on_right)
 			
 	for action_name in ["punch", "kick", "strike", "hard_strike"]:
 		if Input.is_action_just_pressed(action_name):
 			input_data[action_name] = true
-			combo_manager.send_event(action_name)
 		elif Input.is_action_just_released(action_name):
 			input_data[action_name] = false
 
