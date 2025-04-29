@@ -7,6 +7,9 @@ extends CharacterBody2D
 @export var in_action = false
 @export var actionxspeed = 0
 @export var actionyspeed = 0
+@export var can_cancel = false
+@export var can_hard_cancel = false
+@export var can_super_cancel = false
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -168,10 +171,16 @@ func reset_animation():
 	animation_tree["parameters/conditions/move_backward"] = false
 	animation_tree["parameters/conditions/move_forward"] = false
 	animation_tree["parameters/conditions/risesword"] = false
+	animation_tree["parameters/conditions/strike1"] = false
+	animation_tree["parameters/conditions/strike2"] = false
+	animation_tree["parameters/conditions/punch"] = false
+	animation_tree["parameters/conditions/kick"] = false
+	animation_tree["parameters/conditions/hardstrike"] = false
 
 
 func _on_risesword_state_processing(delta: float) -> void:
-	animation_tree["parameters/conditions/risesword"] = true
+	if cancel_check("hard_cancel", false):
+		animation_tree["parameters/conditions/risesword"] = true
 
 func handle_combo():
 	input_direction = input_data["8_direction"]
@@ -189,3 +198,42 @@ func handle_combo():
 	for action_name in ["punch", "kick", "strike", "hard_strike"]:
 		if input_data[action_name]:
 			combo_manager.send_event(action_name)
+
+func cancel_check(cancel_type:String, is_tc:bool) -> bool:
+	if not in_action and not is_tc:
+		return true
+	elif cancel_type == "cancel":
+		if can_cancel:
+			return true
+	elif cancel_type == "hard_cancel":
+		if can_hard_cancel:
+			return true
+	elif cancel_type == "super_cancel":
+		if can_super_cancel:
+			return true
+	return false
+
+
+func _on_strike_state_processing(delta: float) -> void:
+	if cancel_check("none", false):
+		animation_tree["parameters/conditions/strike1"] = true
+
+
+func _on_strikestrike_state_processing(delta: float) -> void:
+	if cancel_check("cancel", true):
+		animation_tree["parameters/conditions/strike2"] = true
+
+
+func _on_punch_state_processing(delta: float) -> void:
+	if cancel_check("none", false):
+		animation_tree["parameters/conditions/punch"] = true
+
+
+func _on_kick_state_processing(delta: float) -> void:
+	if cancel_check("none", false):
+		animation_tree["parameters/conditions/kick"] = true
+
+
+func _on_hardstrike_state_processing(delta: float) -> void:
+	if cancel_check("none", false):
+		animation_tree["parameters/conditions/hardstrike"] = true
