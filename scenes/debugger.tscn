@@ -1,0 +1,86 @@
+[gd_scene load_steps=2 format=3 uid="uid://b3jt52rhfay1l"]
+
+[ext_resource type="Script" uid="uid://ck51vdl3rpoog" path="res://scripts/debugger.gd" id="1_sw8ts"]
+
+[node name="Debugger" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sw8ts")
+
+[node name="Player1VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 400.0
+offset_bottom = 400.0
+
+[node name="LinkedCharacterLabel" type="Label" parent="Player1VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "连接到的角色："
+
+[node name="CurrentFrameLabel" type="Label" parent="Player1VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "当前帧："
+
+[node name="IsLeftLabel" type="Label" parent="Player1VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "在左侧："
+
+[node name="InActionLabel" type="Label" parent="Player1VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "在行动中："
+
+[node name="CanCancelLabel" type="Label" parent="Player1VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "可取消："
+
+[node name="CanHardCancelLabel" type="Label" parent="Player1VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "可硬取消："
+
+[node name="CanSuperCancelLabel" type="Label" parent="Player1VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "可超级取消："
+
+[node name="MoveDirectionLabel" type="Label" parent="Player1VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "当前8方向输入："
+
+[node name="PunchLabel" type="Label" parent="Player1VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "拳："
+
+[node name="KickLabel" type="Label" parent="Player1VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "脚："
+
+[node name="StrikeLabel" type="Label" parent="Player1VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "打击："
+
+[node name="HardStrikeLabel" type="Label" parent="Player1VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "强击："
+
+[node name="Player2VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -400.0
+offset_bottom = 400.0
+grow_horizontal = 0

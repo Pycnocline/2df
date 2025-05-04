@@ -11,64 +11,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_eev2i")
 
-[node name="Indicator" type="Node" parent="."]
-
-[node name="Label_Delta" type="Label" parent="Indicator"]
-offset_right = 194.0
-offset_bottom = 23.0
-text = "Delta:"
-
-[node name="Label_CurrentFrame" type="Label" parent="Indicator"]
-offset_top = 25.0
-offset_right = 194.0
-offset_bottom = 48.0
-text = "当前帧:"
-
-[node name="Label_CurrentDirectionInput" type="Label" parent="Indicator"]
-offset_top = 50.0
-offset_right = 194.0
-offset_bottom = 73.0
-text = "当前标准化方向输入:"
-
-[node name="RichTextLabel_Input_data_sheet" type="RichTextLabel" parent="Indicator"]
-anchors_preset = -1
-anchor_top = 0.315
-anchor_right = 0.296
-anchor_bottom = 1.0
-offset_left = 1.0
-offset_top = -0.12001
-offset_right = 0.00799561
-grow_horizontal = 0
-grow_vertical = 2
-bbcode_enabled = true
-scroll_active = false
-scroll_following = true
-
-[node name="Label_8DirectionInput" type="Label" parent="Indicator"]
-offset_top = 73.0
-offset_right = 194.0
-offset_bottom = 96.0
-text = "8方向输入:"
-
-[node name="Label_IsLeft" type="Label" parent="Indicator"]
-offset_top = 98.0
-offset_right = 194.0
-offset_bottom = 121.0
-text = "在左侧:"
-
 [node name="controller" type="Node" parent="."]
-
-[node name="button_ChangeFacing" type="Button" parent="controller"]
-anchors_preset = -1
-anchor_left = 0.575
-anchor_top = 0.031
-anchor_right = 0.651
-anchor_bottom = 0.08
-offset_left = -0.00012207
-offset_top = 0.519997
-offset_right = -0.920044
-offset_bottom = -0.400009
-text = "改变朝向"
 
 [node name="button_FrameControl" type="Button" parent="controller"]
 anchors_preset = -1
@@ -76,24 +19,10 @@ anchor_left = 0.575
 anchor_top = 0.096
 anchor_right = 0.651
 anchor_bottom = 0.144
-offset_left = -0.00012207
-offset_top = 0.32
-offset_right = -0.920044
-offset_bottom = 0.479996
+offset_left = -1088.0
+offset_top = -90.68
+offset_right = -1088.92
+offset_bottom = -90.52
 text = "开始/暂停"
 
-[node name="button_ShowDataSheet" type="Button" parent="controller"]
-anchors_preset = -1
-anchor_left = 0.575
-anchor_top = 0.165
-anchor_right = 0.651
-anchor_bottom = 0.213
-offset_left = -0.00012207
-offset_top = -0.200012
-offset_right = -0.920044
-offset_bottom = -0.0400238
-text = "显示指令历史"
-
-[connection signal="pressed" from="controller/button_ChangeFacing" to="." method="_on_button_change_facing_pressed"]
 [connection signal="pressed" from="controller/button_FrameControl" to="." method="_on_button_frame_control_pressed"]
-[connection signal="pressed" from="controller/button_ShowDataSheet" to="." method="_on_button_show_data_sheet_pressed"]
